@@ -5,3 +5,8 @@
 # Vim plugins
 .vim/plugged/*
 .vim/.netrwhist
+
+##
+## Zsh
+##
+.zinit/bin/*

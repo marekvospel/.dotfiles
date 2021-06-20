@@ -2,6 +2,15 @@
 ### by vospel | v1
 
 ##
+## Plugins
+##
+
+source ~/.zinit/bin/zinit.zsh
+	
+# Syntax highlighting
+zinit load zsh-users/zsh-syntax-highlighting
+
+##
 ## Appereance
 ##
 
@@ -13,10 +22,6 @@ alias egrep='egrep --color=auto'
 
 # Prefix
 PS1='%F{004}%n:%~$%F{255} '
-
-# Syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 
 ##
 ## Behaviour
