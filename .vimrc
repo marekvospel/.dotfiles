@@ -1,19 +1,56 @@
-" Vimrc
-" by vospel | v1
+""" Vimrc
+""" by vospel | v1
+
+""
+"" Plugins
+""
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-css-color'
+
+call plug#end()
+
+""
+"" Appearance
+""
 
 " Enable syntax highlighting
 syntax on
 
+" Show line numbers
+set nu
+
+" Color scheme
+colorscheme desert 
+hi Constant	ctermfg=1
+hi Constant	guifg=#ed1515
+
+
+" Lightline plugin configuration
+set noshowmode " Don't show -- INSERT --, -- VISUAL -- etc.
+set laststatus=2
+let g:lightline = { 'colorscheme':'wombat' }
+
+
+""
+"" Behaviour
+""
+
 " DO NOT FUCKING BEEP
 set noerrorbells
 
-" Tabs
-set tabstop=4 softtabstop=4
+" Set tabs to 2 spaces wide
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
+" automatically shift code in brackets 
 set smartindent
-set nu
-set nowrap
-set incsearch
 
-" Modified colorscheme desert (.vim/colors/desertc.vim)
-colorscheme desertc
+" Disable text wrapping
+set nowrap
+
+" Search instantly
+set incsearch

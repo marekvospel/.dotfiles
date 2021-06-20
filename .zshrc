@@ -2,7 +2,7 @@
 ### by vospel | v1
 
 ##
-## Appereance customization
+## Appereance
 ##
 
 # Colors for commands
@@ -19,7 +19,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 
 ##
-## Behaviour customization
+## Behaviour
 ##
 
 # DONT FUCKING BEEP
