@@ -3,8 +3,9 @@
 USR=$(whoami)
 
 pull() {
-  if [ ! -d "$(eval echo ~$USR)"/.dotfiles/.git ]; then git clone https://github.com/marekvospel/.dotfiles; fi
   local WD=$(pwd)
+	cd "$(eval echo ~$USR)"
+  if [ ! -d "$(eval echo ~$USR)"/.dotfiles/.git ]; then git clone https://github.com/marekvospel/.dotfiles; fi
   cd "$(eval echo ~$USR)"/.dotfiles
   git pull origin master
   cd "$WD"
@@ -31,7 +32,7 @@ install() {
 
 apply() {
   vim +PlugInstall +qall
-  chsh -s /bin/zsh "$USR"
+  sudo chsh -s /bin/zsh "$USR"
 }
 
 if [ $# -gt 1 ]; then
