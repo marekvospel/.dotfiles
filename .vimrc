@@ -41,6 +41,7 @@ let g:lightline = { 'colorscheme':'wombat' }
 " DO NOT FUCKING BEEP
 set noerrorbells
 
+
 " Set tabs to 2 spaces wide
 set tabstop=2
 set softtabstop=2

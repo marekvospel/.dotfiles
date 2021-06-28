@@ -30,6 +30,9 @@ PS1='%F{004}%n:%~$%F{255} '
 # DONT FUCKING BEEP
 unsetopt beep
 
+# Auto cd
+setopt auto_cd
+
 # Terminal History
 HISTFILE=~/.zsh_history
 HISTSIZE=1000

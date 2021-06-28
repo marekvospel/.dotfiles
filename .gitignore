@@ -3,5 +3,6 @@
 ##
 
 # Vim plugins
-.vim/plugged/*
+.vim/plugged/
 .vim/.netrwhist
+.vim/autoload
