@@ -35,6 +35,15 @@ Usage: $0 [option]
 Options:
 \t-h, --help\t\tShow usage of this script
 \t-u, --user [user]\tChange user who those dotfiles will be installed for.
+
+\t-a, --all\t\tCustomize all packages that can be found (You won't be prompted for each customizable package)
+\t-zsh, --customize-zsh\tTells this script you want to customize zsh, so you don't get prompted.
+\t-vim, --customize-vim\tTells this script you want to customize vim, so you don't get prompted.
+\t-b, --backup\t\tTells this script you want to backup your old dotfiles, so you don't get prompted.
+
+\t--dont-customize-zsh\tTells this script you don't want to customze zsh, so you don't get prompted.
+\t--dont-customize-vim\tTells this script you don't want to customize vim, so you don't get prompted.
+\t--no-backup\t\tTells this script you don't want to backup your old dotfiles, so you dont' get prompted.
 "
 }
 
@@ -57,6 +66,35 @@ while [ "$#" -gt 0 ]; do
 				exit 22
 			fi
 			usr="$1"
+			;;
+		-zsh | --customize-zsh)
+			shift
+			customize_zsh='y'
+			;;
+		--dont-customize-zsh)
+			shift
+			customize_zsh='n'
+			;;
+		-vim | --customize-vim)
+			shift
+			customize_vim='y'
+			;;
+		--dont-customize-vim)
+			shift
+			customize_vim='n'
+			;;
+		-b | --backup)
+			shift
+			backup_dotfiles='y'
+			;;
+		--no-backup)
+			shift
+			backup_dotfiles='n'
+			;;
+		-a | --all)
+			shift
+			customize_zsh='y'
+			customize_vim='y'
 			;;
 		*)
 			shift
@@ -95,12 +133,18 @@ printf "$blue::$reset$bold Looking for customizable packages...$reset\n"
 
 if [ -a /usr/bin/zsh ] || [ -a /bin/zsh ]; then
 	zsh_present=true
-	printf "Found zsh!\n"
+	printf "zsh found!\n"
+else
+	printf "It doesn't seem like you have zsh installed! Install it and re-run this script if you want it to be customized!\n"
+	customize_zsh='n'
 fi
 
 if [ -a /usr/bin/vim ] || [ -a /usr/bin/vim ]; then
 	vim_present=true
-	printf "Found vim!\n"
+	printf "vim found!\n"
+else
+	printf "It doesn't seem like you have vim installed! Install it and re-run this script if you want it to be customized!\n"
+	customize_vim='n'
 fi
 
 #
