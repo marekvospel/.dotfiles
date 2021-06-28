@@ -13,7 +13,7 @@ curl https://raw.githubusercontent.com/marekvospel/.dotfiles/master/installation
 Installing my .dotfiles is easy, everything can be done with pacman / yay inspired installer install script.
 
 The install script can be downloaded & started using following single line command
-``bash
+```bash
 curl https://raw.githubusercontent.com/marekvospel/.dotfiles/master/installation/install.sh -o dotfiles.sh; bash dotfiles.sh; rm dotfiles.sh
 ```
 
