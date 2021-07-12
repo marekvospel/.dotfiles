@@ -23,6 +23,9 @@ If you don't want to use automatic installer, you can run following commands and
 pacman -S vim zsh
 apt-get install vim zsh
 
+# When installing vim, you might want it to be compiled with Xorg support, so you can use feartures like +clipboard
+pacman -S gvim
+
 # Set zsh as your default shell
 chsh -s /bin/zsh $(whoami)
 

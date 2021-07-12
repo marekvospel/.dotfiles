@@ -41,11 +41,13 @@ let g:lightline = { 'colorscheme':'wombat' }
 " DO NOT FUCKING BEEP
 set noerrorbells
 
-
 " Set tabs to 2 spaces wide
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+
+" When yanking, pasting etc. use clipboard
+set clipboard=unnamedplus
 
 " automatically shift code in brackets 
 set smartindent
