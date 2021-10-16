@@ -1,8 +1,0 @@
-##
-## Vim
-##
-
-# Vim plugins
-.vim/plugged/
-.vim/.netrwhist
-.vim/autoload

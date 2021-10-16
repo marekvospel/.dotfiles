@@ -1,14 +1,28 @@
 ### Zshell RC
-### by vospel | v1
+### by vospel | v1.1
+
+GLOBAL_INSTALL=true
+
+
+if "$GLOBAL_INSTALL"; then
+  ZSH=/etc/.dotfiles/.oh-my-zsh
+  DOTFILES_PATH=/etc/.dotfiles
+else
+  ZSH=~/.dotfiles/.oh-my-zsh
+  DOTFILES_PATH=~/.dotfiles
+fi
 
 ##
 ## Plugins
 ##
 
-source ~/.zinit/bin/zinit.zsh
-	
-# Syntax highlighting
-zinit load zsh-users/zsh-syntax-highlighting
+# oh my zsh
+plugins=(ssh-agent sudo zsh-syntax-highlighting)
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities id_rsa
+
+source $ZSH/oh-my-zsh.sh
 
 ##
 ## Appereance
@@ -18,10 +32,11 @@ zinit load zsh-users/zsh-syntax-highlighting
 alias ls='ls --color=auto'
 alias ip='ip --color=auto'
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
 
 # Prefix
-PS1='%F{004}%n:%~$%F{255} '
+precmd() {
+  source $DOTFILES_PATH/.zsh_prefix
+}
 
 ##
 ## Behaviour
@@ -36,7 +51,6 @@ setopt auto_cd
 # Terminal History
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
-SAVEHIST=1000
 
 # Keybinds
 bindkey "^[[H"    beggining-of-line
@@ -56,4 +70,5 @@ alias la='ls -al'
 
 # Default editor
 EDITOR=vim
-VISUAL=vim
+VISUAL=gvim
+

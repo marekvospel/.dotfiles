@@ -24,8 +24,8 @@ set nu
 
 " Color scheme
 colorscheme desert 
-hi Constant	ctermfg=1
-hi Constant	guifg=#ed1515
+hi Constant     ctermfg=1
+hi Constant     guifg=#ed1515
 
 
 " Lightline plugin configuration
