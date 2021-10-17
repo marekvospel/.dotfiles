@@ -1,16 +1,10 @@
 ### Zshell RC
 ### by vospel | v1.1
 
-_GLOBAL_INSTALL=true
 
 
-if "$_GLOBAL_INSTALL"; then
-  ZSH=/etc/.dotfiles/.oh-my-zsh
-  DOTFILES_PATH=/etc/.dotfiles
-else
-  ZSH=~/.dotfiles/.oh-my-zsh
-  DOTFILES_PATH=~/.dotfiles
-fi
+ZSH=~/.dotfiles/.oh-my-zsh
+DOTFILES_PATH=~/.dotfiles
 
 ##
 ## Plugins
