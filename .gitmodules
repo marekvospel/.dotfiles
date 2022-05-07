@@ -1,6 +1,0 @@
-[submodule ".vim-plug"]
-	path = .vim-plug
-	url = https://github.com/junegunn/vim-plug.git
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = https://github.com/ohmyzsh/ohmyzsh.git
