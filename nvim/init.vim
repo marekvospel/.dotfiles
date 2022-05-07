@@ -24,6 +24,7 @@ call plug#end()
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['^node_modules$']
 let NERDTreeMinimalUI=1
+let NERDTreeShowHidden=1
 
 " Devicons
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
@@ -70,3 +71,12 @@ set nu
 
 " Qall
 :command Q :qall
+
+" Clipboard
+set clipboard+=unnamedplus
+
+" Status
+set statusline=%f\ %h%w%m%r\ %{coc#status()}\ %{get(b:,'coc_current_function','')}\ %=%(%l,%c%V\ %=\ %P%)
+
+" Disable wrapping
+set nowrap

@@ -7,7 +7,7 @@
 ### Arch Linux
 You only need nvim & python nvim provider, which is in the community repository
 ```bash
-sudo pacman -S nvim python-pynvim
+sudo pacman -S neovim python-pynvim
 ```
 
 ## All distribution commands
