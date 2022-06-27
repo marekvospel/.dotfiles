@@ -13,10 +13,11 @@ Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
 
 Plug 'airblade/vim-gitgutter'
 
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
@@ -55,6 +56,10 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ 'coc-rust-analyzer',
   \ ]
+
+" Fix on save & define linters
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {'*':['trim_whitespace'], 'rust':['rustfmt']}
 
 " Themes
 colorscheme onedark
