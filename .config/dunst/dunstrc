@@ -3,7 +3,6 @@
   monitor = 1
   follow = none
   origin = top-right
-  width = 240
   frame_width = 1
   gap_size = 4
   offset = 24x16
