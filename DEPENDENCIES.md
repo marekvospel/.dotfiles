@@ -11,13 +11,13 @@ pacman -S git stow
 ## Hyprland
 The Hyprland wm itself and other ui tools like waybar or app launcher (rofi).
 ```sh
-pacman -S hyprland xdg-desktop-portal-hyprland rofi rofi-calc waybar konsole hyprpaper
+pacman -S hyprland xdg-desktop-portal-hyprland rofi rofi-calc waybar konsole hyprpaper dunst
 ```
 
 ## Other
 Other tools required for everything to work smoothly (utils).
 ```sh
-pacman -S wl-clipboard cliphist
+pacman -S wl-clipboard cliphist network-manager-applet kdeconnect
 ```
 
 ## Themes
