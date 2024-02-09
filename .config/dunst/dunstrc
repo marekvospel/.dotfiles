@@ -1,0 +1,23 @@
+
+[global]
+  monitor = 1
+  follow = none
+  origin = top-right
+  width = 240
+  frame_width = 1
+  gap_size = 4
+  offset = 24x16
+  sort = true
+  markup = full
+  alignment = center
+  stack_duplicates = true
+  show_indicators = true
+  background = "#1F3B4D"
+  frame_color = "#4984B0"
+  foreground = "#FFFFFF"
+
+[urgency_normal]
+  frame_color = "#10A674"
+
+[urgency_critical]
+  frame_color = "#bd2c40"
