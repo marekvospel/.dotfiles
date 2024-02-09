@@ -11,7 +11,7 @@ pacman -S git stow
 ## Hyprland
 The Hyprland wm itself and other ui tools like waybar or app launcher (rofi).
 ```sh
-pacman -S hyprland xdg-desktop-portal-hyprland rofi rofi-calc waybar konsole
+pacman -S hyprland xdg-desktop-portal-hyprland rofi rofi-calc waybar konsole hyprpaper
 ```
 
 ## Other
