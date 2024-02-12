@@ -8,7 +8,7 @@
     "modules-left": ["hyprland/workspaces"],
     //"modules-center": ["sway/window"],
     "modules-center": [],
-    "modules-right": ["memory", "cpu", "pulseaudio", "network", "backlight", "clock", "tray"],
+    "modules-right": ["memory", "cpu", "pulseaudio", "network", "backlight", "battery", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
