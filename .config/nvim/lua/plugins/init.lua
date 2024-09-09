@@ -5,7 +5,7 @@ return {
     opts = {
       ensure_installed = {
         "rust-analyzer",
-	"clangd",
+	      "clangd",
       }
     }
   },
@@ -14,6 +14,30 @@ return {
     config = function()
       require "plugins.configs.lspconfig"
     end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      {
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lsp-document-symbol",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+      }
+    },
+    opts = {
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "nvim_lsp_document_symbol" },
+        { name = "nvim_lsp_signature_help" },
+        { name = "buffer" },
+        { name = "nvim_lua" },
+        { name = "path" },
+      }
+    }
   },
   {
     "catppuccin/nvim",
