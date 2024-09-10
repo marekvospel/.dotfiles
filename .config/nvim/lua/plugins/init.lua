@@ -1,4 +1,5 @@
 return {
+
   -- LSP Configs
   {
     "williamboman/mason.nvim",
@@ -12,7 +13,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "plugins.configs.lspconfig"
+      require "config.lspconfig"
     end,
   },
   {
@@ -39,6 +40,15 @@ return {
       }
     }
   },
+
+  -- Syntax highlight
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    build = ":TSUpdate",
+  },
+
+  -- Theme + UI
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -48,8 +58,27 @@ return {
       vim.cmd([[colorscheme catppuccin]])
     end
   },
-  -- Syntax highlight
-  "nvim-treesitter/nvim-treesitter",
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    keys = {
+      { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Toggle nvim tree" },
+    },
+    opts = {
+      filters = { dotfiles = false },
+      renderer = {
+        highlight_git = true,
+        indent_markers = { enable = true },
+        icons = {
+          glyphs = {
+            git = { unmerged = "" },
+          }
+        }
+      }
+    },
+  },
+
+  -- Tmux integration
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
@@ -60,14 +89,15 @@ return {
         ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up" },
     }
   },
-  -- Tree
+
+  -- Git integration
   {
-    "nvim-tree/nvim-tree.lua",
-    keys = {
-      { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Toggle nvim tree" },
+    "lewis6991/gitsigns.nvim",
+    lazy = false,
+    opts = {
+      signcolumn = true,
+      numhl = true,
+      current_line_blame = true,
     },
-    config = function()
-      require("nvim-tree").setup {}
-    end,
   },
 }
