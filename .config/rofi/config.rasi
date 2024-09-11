@@ -2,5 +2,6 @@
 configuration {
   modi: "calc,combi";
   show-icons: true;
+  font: "MapleMono NF 12";
 }
 @theme "/usr/share/rofi/themes/lb.rasi"
