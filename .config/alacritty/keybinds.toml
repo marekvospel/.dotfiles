@@ -1,0 +1,4 @@
+[[keyboard.bindings]]
+key = ";"
+mods = "Control"
+chars = "\u001B[59;5u"
