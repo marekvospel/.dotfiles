@@ -3,7 +3,14 @@ return {
   -- LSP Configs, Completions, Formatting
   {
     'williamboman/mason.nvim',
-    opts = {},
+    opts = function()
+      return require('config.mason_config').opts
+    end,
+    config = function(_, opts)
+      require('mason').setup(opts)
+
+      require('config.mason_config').ensure_installed(opts.ensure_installed)
+    end,
   },
   {
     'neovim/nvim-lspconfig',
@@ -38,7 +45,7 @@ return {
   {
     'stevearc/conform.nvim',
     opts = function()
-      require('config.conform')
+      return require('config.conform')
     end,
   },
 
@@ -108,8 +115,14 @@ return {
   -- Syntax highlight
   {
     'nvim-treesitter/nvim-treesitter',
-    event = { 'BufReadPost', 'BufNewFile' },
+    lazy = false,
     build = ':TSUpdate',
+    opts = function()
+      return require('config.treesitter')
+    end,
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+    end,
   },
 
   -- Better code readability

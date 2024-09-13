@@ -1,6 +1,6 @@
 return {
   formatters_by_ft = {
-    lua = { 'stylua' },
+    lua = { 'stylua', lsp_format = 'fallback' },
     rust = { 'rustfmt', lsp_format = 'fallback' },
     c = { 'clang-format', lsp_format = 'fallback' },
     cpp = { 'clang-format', lsp_format = 'fallback' },
