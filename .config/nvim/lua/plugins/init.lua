@@ -25,21 +25,15 @@ return {
       {
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-nvim-lsp-document-symbol',
-        'hrsh7th/cmp-nvim-lsp-signature-help',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
       },
     },
     opts = {
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_document_symbol' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'buffer' },
-        { name = 'nvim_lua' },
-        { name = 'path' },
-      },
+      { name = 'nvim_lsp' },
+      { name = 'buffer' },
+      { name = 'nvim_lua' },
+      { name = 'path' },
     },
   },
   {
@@ -60,33 +54,45 @@ return {
     end,
   },
   {
+    'nvim-tree/nvim-web-devicons',
+    opts = {},
+  },
+  {
+    'romgrk/barbar.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'lewis6991/gitsigns.nvim',
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    opts = {
+      sidebar_filetypes = {
+        NvimTree = true,
+        dapui = true,
+      },
+    },
+    keys = {
+      { '<Tab>', '<cmd>BufferNext<cr>', desc = 'Cycle to next barbar buffer' },
+      { '<S-Tab>', '<cmd>BufferPrevious<cr>', desc = 'Cycle to previous barbar buffer' },
+      { '<A-Tab>', '<cmd>BufferMoveNext<cr>', desc = 'Move barbar buffer right' },
+      { '<A-S-Tab>', '<cmd>BufferMovePrevious<cr>', desc = 'Move barbar buffer left' },
+      { '<A-x>', '<cmd>BufferClose<cr>', desc = 'Close current barbar buffer' },
+    },
+  },
+  {
     'nvim-tree/nvim-tree.lua',
     cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
     keys = {
       { '<C-n>', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle nvim tree' },
     },
-    opts = {
-      filters = { dotfiles = false },
-      renderer = {
-        highlight_git = true,
-        indent_markers = { enable = true },
-        icons = {
-          git_placement = 'after',
-          modified_placement = 'after',
-          glyphs = {
-            git = {
-              unmerged = '',
-              untracked = '',
-              renamed = '',
-              unstaged = '*',
-              staged = '',
-              deleted = '',
-              ignored = '',
-            },
-          },
-        },
-      },
-    },
+    opts = function()
+      return require('config.nvim-tree')
+    end,
   },
 
   -- Tmux integration
@@ -107,7 +113,7 @@ return {
     lazy = false,
     opts = {
       signcolumn = true,
-      numhl = true,
+      numhl = false,
       current_line_blame = true,
     },
   },
@@ -138,5 +144,18 @@ return {
   {
     'm4xshen/autoclose.nvim',
     opts = {},
+  },
+
+  -- Debugging
+  {
+    'mfussenegger/nvim-dap',
+    event = 'VeryLazy',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
+      'nvim-neotest/nvim-nio',
+    },
+    config = function()
+      require('config.dap')
+    end,
   },
 }

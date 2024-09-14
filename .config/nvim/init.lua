@@ -1,6 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = 'number'
+vim.opt.signcolumn = 'yes:1'
 
 -- Indent
 vim.opt.expandtab = true
