@@ -1,5 +1,6 @@
-local dap, dapui = require('dap'), require('dapui')
+local dap, dapui, dap_virtual_text = require('dap'), require('dapui'), require('nvim-dap-virtual-text')
 dapui.setup()
+dap_virtual_text.setup()
 
 dap.listeners.before.attach.dapui_config = function()
   dapui.open()
@@ -18,8 +19,10 @@ end
 vim.fn.sign_define('DapBreakpoint', { text = 'B', texthl = 'DapBreakpoint', linehl = '', numhl = '' })
 vim.api.nvim_set_hl(0, 'DapBreakpoint', { fg = '#ff5050' })
 
-vim.keymap.set('n', 'dB', dap.toggle_breakpoint, {})
-vim.keymap.set('n', 'dt', dapui.toggle, {})
+vim.keymap.set('n', '<A-d>b', dap.toggle_breakpoint, {})
+vim.keymap.set('n', '<A-d>t', dapui.toggle, {})
+vim.keymap.set('n', '<A-d>c', dap.continue, {})
+vim.keymap.set('n', '<A-d>k', dap.terminate, {})
 
 dap.adapters.gdb = {
   type = 'executable',
