@@ -70,7 +70,6 @@ return {
     opts = {
       sidebar_filetypes = {
         NvimTree = true,
-        dapui = true,
       },
     },
     keys = {
@@ -153,6 +152,7 @@ return {
     dependencies = {
       'rcarriga/nvim-dap-ui',
       'nvim-neotest/nvim-nio',
+      'theHamsta/nvim-dap-virtual-text',
     },
     config = function()
       require('config.dap')
