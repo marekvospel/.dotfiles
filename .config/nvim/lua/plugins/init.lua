@@ -30,10 +30,12 @@ return {
       },
     },
     opts = {
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
-      { name = 'nvim_lua' },
-      { name = 'path' },
+      sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'nvim_lua' },
+        { name = 'path' },
+      },
     },
   },
   {
@@ -127,6 +129,12 @@ return {
       numhl = false,
       current_line_blame = true,
     },
+  },
+
+  -- Wakatime
+  {
+    'wakatime/vim-wakatime',
+    lazy = false,
   },
 
   -- Syntax highlight

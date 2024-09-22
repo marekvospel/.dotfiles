@@ -23,5 +23,6 @@
   "plenary.nvim": { "branch": "master", "commit": "ec289423a1693aeae6cd0d503bac2856af74edaa" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "5f73b24aeb94f5274c218955573153c69ce4d1ee" },
   "telescope.nvim": { "branch": "master", "commit": "927c10f748e49c543b2d544c321a1245302ff324" },
-  "vim-tmux-navigator": { "branch": "master", "commit": "5b3c701686fb4e6629c100ed32e827edf8dad01e" }
+  "vim-tmux-navigator": { "branch": "master", "commit": "5b3c701686fb4e6629c100ed32e827edf8dad01e" },
+  "vim-wakatime": { "branch": "master", "commit": "f699e30ca1ba0c7f316847316fd0ba19d3ee51c1" }
 }
