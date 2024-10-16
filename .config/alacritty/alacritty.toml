@@ -3,7 +3,9 @@ import = [
   "~/.config/alacritty/keybinds.toml"
 ]
 
-shell = "/bin/tmux"
+[shell]
+program = "/usr/bin/env"
+args = ["tmux"]
 
 [env]
 TERM = "xterm-256color"

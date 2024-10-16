@@ -1,15 +1,26 @@
-local M = {}
-
-M.opts = {
-  ensure_installed = {
-    'clangd',
-    'clang-format',
-    'lua-language-server',
-    'stylua',
-    'typescript-language-server',
-    'vue-language-server',
-  },
+local M = {
+  opts = {}
 }
+
+local non_nix_installed = {
+  'clangd',
+  'clang-format',
+  'stylua',
+  'lua-language-server',
+}
+
+local ensure_installed = {
+  -- Nix has to be installed manually :(
+  'typescript-language-server',
+  'vue-language-server',
+  'unocss-language-server',
+}
+
+if os.getenv("NVIM_MASON_NIX") ~= "true" then
+  M.opts.ensure_installed = { unpack(ensure_installed), unpack(non_nix_installed) }
+else
+  M.opts.ensure_installed = ensure_installed
+end
 
 M.ensure_installed = function(packages)
   if packages == nil then

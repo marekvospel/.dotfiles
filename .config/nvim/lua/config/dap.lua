@@ -19,10 +19,10 @@ end
 vim.fn.sign_define('DapBreakpoint', { text = 'B', texthl = 'DapBreakpoint', linehl = '', numhl = '' })
 vim.api.nvim_set_hl(0, 'DapBreakpoint', { fg = '#ff5050' })
 
-vim.keymap.set('n', '<A-d>b', dap.toggle_breakpoint, {})
-vim.keymap.set('n', '<A-d>t', dapui.toggle, {})
-vim.keymap.set('n', '<A-d>c', dap.continue, {})
-vim.keymap.set('n', '<A-d>k', dap.terminate, {})
+vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, {})
+vim.keymap.set('n', '<leader>dt', dapui.toggle, {})
+vim.keymap.set('n', '<leader>dc', dap.continue, {})
+vim.keymap.set('n', '<leader>dk', dap.terminate, {})
 
 dap.adapters.gdb = {
   type = 'executable',
