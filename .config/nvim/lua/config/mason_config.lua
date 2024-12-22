@@ -2,6 +2,15 @@ local M = {
   opts = {}
 }
 
+M.opts = {
+  ensure_installed = {
+    'lua-language-server',
+    'stylua',
+    'typescript-language-server',
+    'vue-language-server',
+  },
+}
+
 local non_nix_installed = {
   'clangd',
   'clang-format',
