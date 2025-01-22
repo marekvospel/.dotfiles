@@ -26,6 +26,6 @@ The `<leader>` key for my configuration is `s p a c e`
 - [X] Toggle autoformat command
 - [ ] Prettier (only when .prettierrc present)
 - [ ] Comment keybind remap
-- [ ] status line
+- [X] status line
 - [ ] Improve debug experience
 
