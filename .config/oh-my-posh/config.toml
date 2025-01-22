@@ -1,6 +1,14 @@
-version = 2
+console_title_template = '{{.Folder}}{{if .Root}} :: root{{end}}'
+version = 3
 final_space = true
-console_title_template = "{{.Folder}}{{if .Root}} :: root{{end}}"
+
+[secondary_prompt]
+  template = '❯ '
+  foreground = 'yellow'
+
+[transient_prompt]
+  template = '➜ '
+  foreground_templates = ['{{if eq .Code 0}}lightGreen{{end}}', '{{if ne .Code 0}}red{{end}}']
 
 [[blocks]]
   type = 'prompt'
@@ -8,21 +16,45 @@ console_title_template = "{{.Folder}}{{if .Root}} :: root{{end}}"
   newline = true
 
   [[blocks.segments]]
+    template = '{{if .Segments.Git.Ref}}{{ .Segments.Git.RepoName }}{{ .Path | replace .Segments.Git.Dir ""}}{{else}}{{ .Path }}{{end}}'
+    foreground = 'cyan'
     type = 'path'
     style = 'plain'
-    foreground = 'cyan'
-    template = '{{if .Segments.Git.Ref}}{{ .Segments.Git.RepoName }}{{ .Path | replace .Segments.Git.Dir ""}}{{else}}{{ .Path }}{{end}}'
+
     [blocks.segments.properties]
+      cache_duration = 'none'
       style = 'full'
 
   [[blocks.segments]]
+    template = ' <#ffffff>on</>  <b>{{if .Detached}}HEAD <green>({{.Commit.Sha | substr 0 7}})</></>{{else}}{{ .HEAD }}{{end}}</b>{{if or .Rebase .Merge}} <#ffffff>(<#f9e2af><b>{{if .Rebase}}REBASING{{end}}{{if .Merge}}MERGING{{end}}</></>)</>{{end}}'
+    foreground = '#f5c2e7'
     type = 'git'
     style = 'plain'
-    foreground = '#f5c2e7'
-    template = " <#ffffff>on</> \ue0a0 <b>{{if .Detached}}HEAD <green>({{.Commit.Sha | substr 0 7}})</></>{{else}}{{ .HEAD }}{{end}}</b> {{if or .Rebase .Merge}}<#ffffff>(<#f9e2af><b>{{if .Rebase}}REBASING{{end}}{{if .Merge}}MERGING{{end}}</></>)</>{{end}}"
+
     [blocks.segments.properties]
-      fetch_status = true
       branch_icon = ''
+      cache_duration = 'none'
+      fetch_status = true
+
+  #
+  # Languages
+  #
+
+  [[blocks.segments]]
+    type = 'rust'
+    style = 'plain'
+    foreground = "red"
+    template = ' <#ffffff>via</> 🦀 {{ .Full }}'
+
+  [[blocks.segments]]
+    type = 'node'
+    style = 'plain'
+    foreground = 'green'
+    template = ' <#ffffff>via</>  {{ .Full }}'
+  
+# 
+# Rest of the prompt
+#
 
 [[blocks]]
   type = 'rprompt'
@@ -30,13 +62,15 @@ console_title_template = "{{.Folder}}{{if .Root}} :: root{{end}}"
   overflow = 'hidden'
 
   [[blocks.segments]]
+    template = '{{ .FormattedMs }}'
+    foreground = 'yellow'
     type = 'executiontime'
     style = 'plain'
-    foreground = 'yellow'
-    template = '{{ .FormattedMs }}'
+
     [blocks.segments.properties]
-      threshold = 5000
+      cache_duration = 'none'
       style = 'austin'
+      threshold = 5000
 
 [[blocks]]
   type = 'prompt'
@@ -44,22 +78,10 @@ console_title_template = "{{.Folder}}{{if .Root}} :: root{{end}}"
   newline = true
 
   [[blocks.segments]]
-    foreground_templates = [
-      '{{if eq .Code 0}}lightGreen{{end}}',
-      '{{if ne .Code 0}}red{{end}}',
-    ]
-    style = 'plain'
-    template = "\u279c"
+    template = '➜'
     type = 'text'
+    style = 'plain'
+    foreground_templates = ['{{if eq .Code 0}}lightGreen{{end}}', '{{if ne .Code 0}}red{{end}}']
 
-[transient_prompt]
-  foreground_templates = [
-    '{{if eq .Code 0}}lightGreen{{end}}',
-    '{{if ne .Code 0}}red{{end}}',
-  ]
-  template = "\u279c "
-
-[secondary_prompt]
-  foreground = 'yellow'
-  template = "\u276f "
-
+    [blocks.segments.properties]
+      cache_duration = 'none'
