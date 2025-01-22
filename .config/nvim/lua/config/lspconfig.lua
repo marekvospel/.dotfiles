@@ -7,6 +7,16 @@ local typescript_language_server_path = mason_registry.get_package('typescript-l
 local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
 
+local function has_files(bufid, ...)
+  local patterns = { ... }
+  local finder = util.root_pattern(unpack(patterns))
+
+  local bufname = vim.api.nvim_buf_get_name(bufid)
+  local bufdir = vim.fn.fnamemodify(bufname, ':p:h')
+
+  return finder(bufdir) ~= nil
+end
+
 lspconfig.ts_ls.setup({
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
 
@@ -84,6 +94,20 @@ lspconfig.cssls.setup({
 })
 lspconfig.eslint.setup({
   filetypes = { 'typescript', 'javascript', 'vue' },
+  on_attach = function(client, bufid)
+    -- Not optimal, as it has some delay, but it works I guess
+    if not has_files(bufid, '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.mjs', '.eslintrc.json') then
+      client.stop()
+    else
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        callback = function(args)
+          if args.buf == bufid and not vim.g.disable_autoformat and not vim.b[bufid].disable_autoformat then
+            vim.cmd('EslintFixAll')
+          end
+        end,
+      })
+    end
+  end,
 })
 
 lspconfig.clangd.setup({

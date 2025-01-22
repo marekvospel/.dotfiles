@@ -21,8 +21,9 @@ The `<leader>` key for my configuration is `s p a c e`
 - `<leader>p` - Paste from system clipboard
 
 ## Todo
-- [ ] Eslint auto fix on write
-- [ ] Activate eslint only when .eslintrc present
+- [X] Eslint auto fix on write
+- [X] Activate eslint only when .eslintrc present
+- [X] Toggle autoformat command
 - [ ] Prettier (only when .prettierrc present)
 - [ ] Comment keybind remap
 - [ ] status line
