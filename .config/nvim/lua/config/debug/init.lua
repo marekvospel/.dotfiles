@@ -15,6 +15,13 @@ M.setup = function()
 
   -- Adapters, configs
   require('config.debug.c').setup()
+  require('config.debug.node').setup()
+
+  local vscode = require('dap.ext.vscode')
+  local json = require('plenary.json')
+  vscode.json_decode = function(str)
+    return vim.json.decode(json.json_strip_comments(str))
+  end
 end
 
 return M
