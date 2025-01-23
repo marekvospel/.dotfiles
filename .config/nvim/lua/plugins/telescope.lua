@@ -12,6 +12,7 @@ return {
       local telescope = require('telescope')
       local telescopeConfig = require('telescope.config')
 
+      ---@diagnostic disable-next-line: deprecated
       local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
 
       table.insert(vimgrep_arguments, '--hidden')
