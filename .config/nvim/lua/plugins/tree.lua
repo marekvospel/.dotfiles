@@ -29,6 +29,29 @@ return {
           },
         },
       },
+      actions = {
+        open_file = {
+          window_picker = {
+            exclude = {
+              filetype = {
+                'notify',
+                'packer',
+                'qf',
+                'diff',
+                'fugitive',
+                'fugitiveblame',
+                'dapui_watches',
+                'dap-repl',
+              },
+              buftype = {
+                'nofile',
+                'terminal',
+                'help',
+              },
+            },
+          },
+        },
+      },
     },
   },
 }

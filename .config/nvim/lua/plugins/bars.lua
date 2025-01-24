@@ -12,6 +12,8 @@ return {
     opts = {
       sidebar_filetypes = {
         NvimTree = true,
+        ['dapui_watches'] = true,
+        -- Possibly dapui_stacks, bapui_breakpoints, dapui_scopes, dapui_console, dap-repl
       },
     },
     keys = {

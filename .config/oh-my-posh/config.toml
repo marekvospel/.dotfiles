@@ -26,7 +26,8 @@ final_space = true
       style = 'full'
 
   [[blocks.segments]]
-    template = ' <#ffffff>on</>  <b>{{if .Detached}}HEAD <green>({{.Commit.Sha | substr 0 7}})</></>{{else}}{{ .HEAD }}{{end}}</b>{{if or .Rebase .Merge}} <#ffffff>(<#f9e2af><b>{{if .Rebase}}REBASING{{end}}{{if .Merge}}MERGING{{end}}</></>)</>{{end}}'
+# template = ' <#ffffff>on</>  <b>{{if .Detached}}HEAD <green>({{.Commit.Sha | substr 0 7}})</></>{{else}}{{ .HEAD }}{{end}}</b> {{if or .Rebase .Merge}}<#ffffff>(<#f9e2af><b>{{if .Rebase}}REBASING {{.RebaseProgress.Current}}/{{.RebaseProgress.Total}}{{end}}{{if .Merge}}MERGING{{end}}</></>)</>{{end}}'
+    template = ' <#ffffff>on</>  <b>{{if .Detached}}HEAD <green>({{.Commit.Sha | substr 0 7}})</></>{{else}}{{ .HEAD }}{{end}}</b> {{if or .Rebase .Merge}}<#ffffff>(<#f9e2af><b>{{if .Rebase}}REBASING{{end}}{{if .Merge}}MERGING{{end}}</></>)</>{{end}}'
     foreground = '#f5c2e7'
     type = 'git'
     style = 'plain'
