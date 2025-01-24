@@ -1,0 +1,45 @@
+{
+  "configurations": [
+    // Launch current application with npm and attach to it.
+    // In multiservice environment, you'll want to define the path
+    // to the service
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "npm start with debugger",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script", "start"
+      ],
+      "sourceMaps": true,
+      "cwd": "${workspaceFolder}"
+    },
+    // Attempt to attach a debugger to a running node process.
+    // For this to work, node needs the --inspect flag
+    {
+      "type": "pwa-node",
+      "request": "attach",
+      "name": "Attach to process with debugger",
+      "sourceMaps": true,
+      "cwd": "${workspaceFolder}"
+    },
+    // Launch a firefox and attempt to attach to it's debugger.
+    // (not sure why --remote-debugging-port has to be present)
+    {
+      "type": "firefox",
+      "request": "launch",
+      "name": "Launch web with debugger (Firefox)",
+      "reAttach": true,
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}",
+      "runtimeArgs": ["--remote-debugging-port=9222"]
+    },
+    // Launch a binary with gdb attached
+    {
+      "type": "gdb",
+      "request": "launch",
+      "name": "Launch binary with gdb",
+      "program": "./a.out"
+    }
+  ]
+}
