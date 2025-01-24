@@ -53,7 +53,8 @@ return {
         section_separators = '',
       },
       sections = {
-        lualine_x = { wakatime, 'encoding', 'fileformat', 'filetype' },
+        lualine_x = { wakatime },
+        lualine_y = { 'encoding', 'fileformat', 'filetype' },
       },
     }
   end,
