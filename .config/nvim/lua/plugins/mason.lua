@@ -8,15 +8,17 @@ local non_nix_installed = {
   'clang-format',
   'stylua',
   'lua-language-server',
+  'biome',
 }
 
 local ensure_installed = {
-  'eslint_d',
   'typescript-language-server',
   'vue-language-server',
   'unocss-language-server',
   'firefox-debug-adapter',
   'js-debug-adapter',
+  'prettier',
+  'eslint-lsp',
 }
 
 if os.getenv('NVIM_MASON_NIX') ~= 'true' then
