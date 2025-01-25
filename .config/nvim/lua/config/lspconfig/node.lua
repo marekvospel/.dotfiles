@@ -6,7 +6,7 @@ local typescript_language_server_path = mason_registry.get_package('typescript-l
 
 local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
-local has_files = require('config.lspconfig').has_files
+local buf_root_pattern = require('util.files').buf_root_pattern
 
 local M = {}
 
@@ -92,10 +92,10 @@ M.setup = function()
 
   -- Eslint lsp
   lspconfig.eslint.setup({
-    filetypes = { 'typescript', 'javascript', 'vue' },
+    filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte' },
     on_attach = function(client, bufid)
       -- Not optimal, as it has some delay, but it works I guess
-      if not has_files(bufid, '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.mjs', '.eslintrc.json') then
+      if not buf_root_pattern(bufid, '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.mjs', '.eslintrc.json') then
         client.stop()
       else
         vim.api.nvim_create_autocmd('BufWritePre', {
@@ -108,6 +108,19 @@ M.setup = function()
       end
     end,
   })
+
+  -- Biome
+  lspconfig.biome.setup({
+    filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte' },
+
+    on_attach = function(client, bufid)
+      -- Not optimal, as it has some delay, but it works I guess
+      if not buf_root_pattern(bufid, 'biome.json', 'biome.jsonc') then
+        client.stop()
+      end
+    end,
+  })
+  -- TODO: oxlint when availible
 end
 
 return M

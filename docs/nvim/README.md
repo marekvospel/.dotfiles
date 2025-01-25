@@ -48,8 +48,9 @@ types are `gdb`, `pwa-node` and `firefox`. To get started you can copy the
 examples in `./launch.json` and starting the debugger with `gc`.
 
 ## Todo
-- [ ] Prettier (only when .prettierrc present)
-- [ ] Biome / oxlint support
+- [X] Prettier (only when .prettierrc present)
+- [X] Biome support
+- [ ] Oxlint support (tba when oxlint is added to nvim-lspconfig)
 - [X] Comment keybind remap
 - [X] Improve debug experience
 
