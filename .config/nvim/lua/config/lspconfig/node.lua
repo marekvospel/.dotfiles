@@ -120,7 +120,17 @@ M.setup = function()
       end
     end,
   })
-  -- TODO: oxlint when availible
+  -- oxlint
+  lspconfig.oxlint.setup({
+    filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte' },
+
+    on_attach = function(client, bufid)
+      -- Not optimal, as it has some delay, but it works I guess
+      if not buf_root_pattern(bufid, '.oxlintrc.json') then
+        client.stop()
+      end
+    end,
+  })
 end
 
 return M
