@@ -1,0 +1,6 @@
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml",
+  "~/.config/alacritty/keybinds.toml"
+]
+
+shell = "/bin/tmux"
