@@ -11,6 +11,8 @@ M.setup = function(on_attach, capabilities)
         diagnostics = {
           globals = { 'vim' },
         },
+        telemetry = { enable = false },
+        hint = { enable = true },
       },
     },
     on_attach = on_attach,

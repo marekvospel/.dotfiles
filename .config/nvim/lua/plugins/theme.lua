@@ -13,6 +13,15 @@ return {
             },
           },
         },
+        custom_highlights = function(colors)
+          return {
+            CmpPmenu = { bg = colors.base },
+            CmpSel = { bg = colors.surface1 },
+            CmpBorder = { fg = colors.surface2, bg = colors.base },
+            CmpItemKindTailwindcss = { fg = '#00bcff' },
+            CmpItemKindUnocss = {},
+          }
+        end,
       })
       vim.cmd([[colorscheme catppuccin]])
     end,
