@@ -17,7 +17,7 @@ pacman -S hyprland xdg-desktop-portal-hyprland rofi rofi-calc waybar konsole hyp
 ## Other
 Other tools required for everything to work smoothly (utils).
 ```sh
-pacman -S wl-clipboard cliphist network-manager-applet kdeconnect kwallet5 grim slurp
+pacman -S wl-clipboard cliphist network-manager-applet kdeconnect kwallet5 grim slurp nvim
 ```
 
 ## Themes
