@@ -26,3 +26,5 @@ lspconfig.volar.setup({
     }
   }
 })
+
+lspconfig.clangd.setup({})
