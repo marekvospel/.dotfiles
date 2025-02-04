@@ -5,9 +5,6 @@ return {
     config = function()
       require('config.lspconfig').setup()
     end,
-    keys = {
-      { '<leader>r', vim.lsp.buf.rename, desc = 'lsp rename variable' },
-    },
   },
   {
     'rachartier/tiny-code-action.nvim',
@@ -40,5 +37,16 @@ return {
         eol = '<leader>cA',
       },
     },
+  },
+  {
+    'felpafel/inlay-hint.nvim',
+    event = 'LspAttach',
+    config = function()
+      require('inlay-hint').setup({
+        virt_text_pos = 'inline',
+        highlight_group = 'LspInlayHint',
+        hl_mode = 'replace',
+      })
+    end,
   },
 }

@@ -5,6 +5,15 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
+      require('catppuccin').setup({
+        integrations = {
+          native_lsp = {
+            inlay_hints = {
+              background = false,
+            },
+          },
+        },
+      })
       vim.cmd([[colorscheme catppuccin]])
     end,
   },

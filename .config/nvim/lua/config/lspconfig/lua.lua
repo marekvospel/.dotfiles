@@ -2,7 +2,7 @@ local M = {}
 
 local lspconfig = require('lspconfig')
 
-M.setup = function()
+M.setup = function(on_attach, capabilities)
   lspconfig.lua_ls.setup({
     filetypes = { 'lua' },
 
@@ -13,6 +13,8 @@ M.setup = function()
         },
       },
     },
+    on_attach = on_attach,
+    capabilities = capabilities,
   })
 end
 

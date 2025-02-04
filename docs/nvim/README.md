@@ -14,6 +14,9 @@ The `<leader>` key for my configuration is `s p a c e`
 ### Lsp
 - `<leader>r` - Refactor: rename variable
 - `<leader>a` - Code action menu
+- `<leader>gD` - Go to declaration
+- `<leader>gd` - Go to deffinition
+- `<leader>gi` - Go to implementation
 - `<leader>cc` - Comment: current line
 - `<leader>bc` - Comment: block comment current line 
 - `<leader>c` - Comment: selection (also works with `0`, `O`, `A`)

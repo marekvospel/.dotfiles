@@ -1,5 +1,9 @@
 local mason_opts = {
   ensure_installed = {},
+  registries = {
+    'file:/home/vospel/.dotfiles/.config/nvim/mason/',
+    'github:mason-org/mason-registry',
+  },
 }
 
 -- Packages that are installed on non-nix devices

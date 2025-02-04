@@ -10,7 +10,20 @@ local buf_root_pattern = require('util.files').buf_root_pattern
 
 local M = {}
 
-M.setup = function()
+M.setup = function(on_attach, capabilities)
+  local inlayHints = {
+    includeInlayParameterNameHints = 'all',
+    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+
+    includeInlayVariableTypeHints = true,
+    includeInlayFunctionParameterTypeHints = true,
+    includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+
+    includeInlayPropertyDeclarationTypeHints = true,
+    includeInlayFunctionLikeReturnTypeHints = true,
+    includeInlayEnumMemberValueHints = true,
+  }
+
   -- Js / Typescript
   lspconfig.ts_ls.setup({
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
@@ -20,10 +33,32 @@ M.setup = function()
         {
           name = '@vue/typescript-plugin',
           location = vue_language_server_path,
-          languages = { 'vue', 'typescript', 'javascript', 'javascript', 'typescriptreact' },
+          languages = { 'vue', 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
         },
       },
     },
+    settings = {
+      javascript = {
+        inlayHints = inlayHints,
+      },
+      typescript = {
+        inlayHints = inlayHints,
+      },
+      javascriptreact = {
+        inlayHints = inlayHints,
+      },
+      typescriptreact = {
+        inlayHints = inlayHints,
+      },
+      vue = {
+        inlayHints = inlayHints,
+      },
+      svelte = {
+        inlayHints = inlayHints,
+      },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
   })
 
   -- Vue
@@ -32,7 +67,7 @@ M.setup = function()
 
     init_options = {
       vue = {
-        hybridMode = false,
+        hybridMode = true,
       },
       typescript = {
         tsdk = typescript_language_server_path,
@@ -47,6 +82,8 @@ M.setup = function()
         },
       },
     },
+    on_attach = on_attach,
+    capabilities = capabilities,
   })
 
   -- Svelte
@@ -61,6 +98,8 @@ M.setup = function()
         },
       },
     },
+    on_attach = on_attach,
+    capabilities = capabilities,
   })
 
   -- UnoCSS, CSS
@@ -78,6 +117,8 @@ M.setup = function()
       'css',
     },
     root_dir = util.root_pattern('unocss.config.js', 'unocss.config.ts', 'uno.config.ts', 'uno.config.js'),
+    on_attach = on_attach,
+    capabilities = capabilities,
   })
   lspconfig.cssls.setup({
     settings = {
@@ -88,6 +129,8 @@ M.setup = function()
         },
       },
     },
+    on_attach = on_attach,
+    capabilities = capabilities,
   })
 
   -- Eslint lsp
@@ -106,7 +149,9 @@ M.setup = function()
           end,
         })
       end
+      on_attach(client, bufid)
     end,
+    capabilities = capabilities,
   })
 
   -- Biome
@@ -118,18 +163,44 @@ M.setup = function()
       if not buf_root_pattern(bufid, 'biome.json', 'biome.jsonc') then
         client.stop()
       end
+      on_attach(client, bufid)
     end,
+    capabilities = capabilities,
   })
   -- oxlint
   lspconfig.oxlint.setup({
     filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte' },
+    log_level = vim.lsp.protocol.MessageType.Debug,
+    message_level = vim.lsp.protocol.MessageType.Debug,
 
     on_attach = function(client, bufid)
       -- Not optimal, as it has some delay, but it works I guess
       if not buf_root_pattern(bufid, '.oxlintrc.json') then
         client.stop()
       end
+      on_attach(client, bufid)
     end,
+    capabilities = capabilities,
+  })
+
+  -- Hopefully soon in oxlint
+  -- https://github.com/oxc-project/oxc/pull/8858
+  vim.api.nvim_create_user_command('OxcFixAll', function()
+    local lsp_client = require('lspconfig.util').get_active_client_by_name(0, 'oxlint')
+    if lsp_client == nil then
+      return
+    end
+
+    lsp_client.request('workspace/executeCommand', {
+      command = 'oxc.fixAll',
+      arguments = {
+        {
+          uri = vim.uri_from_bufnr(0),
+        },
+      },
+    }, nil, 0)
+  end, {
+    desc = 'Apply fixes using oxlint (--fix)',
   })
 end
 
