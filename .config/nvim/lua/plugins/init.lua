@@ -93,6 +93,18 @@ return {
       return require('config.nvim-tree')
     end,
   },
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    keys = {
+      { '<S-f><S-f>', '<cmd>Telescope find_files<cr>', desc = 'Fuzzy find files' },
+    },
+    config = function()
+      require('config.telescope')
+    end,
+  },
 
   -- Tmux integration
   {
