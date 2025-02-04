@@ -23,7 +23,7 @@ pacman -S wl-clipboard cliphist network-manager-applet kdeconnect kwallet5 grim 
 ## Themes
 QT or GTK themes, cursor themes and other tooling.
 ```sh
-pacman -S breeze breeze-gtk qt5ct bibata-cursor-theme-bin papirus-icon-theme
+pacman -S breeze breeze-gtk qt6ct bibata-cursor-theme-bin papirus-icon-theme
 ```
 
 ## Fonts
