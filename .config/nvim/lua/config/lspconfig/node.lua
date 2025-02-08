@@ -170,8 +170,6 @@ M.setup = function(on_attach, capabilities)
   -- oxlint
   lspconfig.oxlint.setup({
     filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte' },
-    log_level = vim.lsp.protocol.MessageType.Debug,
-    message_level = vim.lsp.protocol.MessageType.Debug,
 
     on_attach = function(client, bufid)
       -- Not optimal, as it has some delay, but it works I guess
@@ -185,8 +183,9 @@ M.setup = function(on_attach, capabilities)
 
   -- Hopefully soon in oxlint
   -- https://github.com/oxc-project/oxc/pull/8858
-  vim.api.nvim_create_user_command('OxcFixAll', function()
-    local lsp_client = require('lspconfig.util').get_active_client_by_name(0, 'oxlint')
+  --[[ vim.api.nvim_create_user_command('OxcFix', function()
+    local lsp_client = vim.lsp.get_clients({ bufid = 0, name = 'oxlint' })[1]
+
     if lsp_client == nil then
       return
     end
@@ -201,7 +200,7 @@ M.setup = function(on_attach, capabilities)
     }, nil, 0)
   end, {
     desc = 'Apply fixes using oxlint (--fix)',
-  })
+  }) ]]
 end
 
 return M
