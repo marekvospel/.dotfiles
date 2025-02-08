@@ -15,7 +15,6 @@ local ensure_installed = {
   'typescript-language-server',
   'vue-language-server',
   'unocss-language-server',
-  -- TODO: setup
   'firefox-debug-adapter',
   'js-debug-adapter',
 }
