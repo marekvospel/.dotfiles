@@ -14,9 +14,13 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
+    lazy = false,
     config = function()
       require('config.lspconfig')
     end,
+    keys = {
+      { '<leader>r', vim.lsp.buf.rename, desc = 'lsp rename variable' },
+    },
   },
   {
     'hrsh7th/nvim-cmp',
@@ -75,11 +79,11 @@ return {
       },
     },
     keys = {
-      { '<Tab>', '<cmd>BufferNext<cr>', desc = 'Cycle to next barbar buffer' },
-      { '<S-Tab>', '<cmd>BufferPrevious<cr>', desc = 'Cycle to previous barbar buffer' },
-      { '<A-Tab>', '<cmd>BufferMoveNext<cr>', desc = 'Move barbar buffer right' },
-      { '<A-S-Tab>', '<cmd>BufferMovePrevious<cr>', desc = 'Move barbar buffer left' },
-      { '<A-x>', '<cmd>BufferClose<cr>', desc = 'Close current barbar buffer' },
+      { '<Tab>',           '<cmd>BufferNext<cr>',         desc = 'Cycle to next barbar buffer' },
+      { '<S-Tab>',         '<cmd>BufferPrevious<cr>',     desc = 'Cycle to previous barbar buffer' },
+      { '<leader><Tab>',   '<cmd>BufferMoveNext<cr>',     desc = 'Move barbar buffer right' },
+      { '<leader><S-Tab>', '<cmd>BufferMovePrevious<cr>', desc = 'Move barbar buffer left' },
+      { '<leader>x',       '<cmd>BufferClose<cr>',        desc = 'Close current barbar buffer' },
     },
   },
   {
@@ -101,10 +105,23 @@ return {
       'nvim-lua/plenary.nvim',
     },
     keys = {
-      { '<S-f><S-f>', '<cmd>Telescope find_files<cr>', desc = 'Fuzzy find files' },
+      { '<leader><leader>', '<cmd>Telescope find_files<cr>', desc = 'Fuzzy find files' },
     },
     config = function()
       require('config.telescope')
+    end,
+  },
+  {
+    'rachartier/tiny-code-action.nvim',
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+    },
+    keys = {
+      { '<leader>a', (function() require("tiny-code-action").code_action() end), desc = 'lsp code action' }
+    },
+    config = function()
+      require('tiny-code-action').setup()
     end,
   },
 
@@ -128,6 +145,9 @@ return {
       signcolumn = true,
       numhl = false,
       current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text_priority = 10000,
+      },
     },
   },
 
