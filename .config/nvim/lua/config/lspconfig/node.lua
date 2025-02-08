@@ -180,27 +180,6 @@ M.setup = function(on_attach, capabilities)
     end,
     capabilities = capabilities,
   })
-
-  -- Hopefully soon in oxlint
-  -- https://github.com/oxc-project/oxc/pull/8858
-  --[[ vim.api.nvim_create_user_command('OxcFix', function()
-    local lsp_client = vim.lsp.get_clients({ bufid = 0, name = 'oxlint' })[1]
-
-    if lsp_client == nil then
-      return
-    end
-
-    lsp_client.request('workspace/executeCommand', {
-      command = 'oxc.fixAll',
-      arguments = {
-        {
-          uri = vim.uri_from_bufnr(0),
-        },
-      },
-    }, nil, 0)
-  end, {
-    desc = 'Apply fixes using oxlint (--fix)',
-  }) ]]
 end
 
 return M

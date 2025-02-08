@@ -53,7 +53,8 @@ examples in `./launch.json` and starting the debugger with `gc`.
 ## Todo
 - [X] Prettier (only when .prettierrc present)
 - [X] Biome support
-- [ ] Oxlint support (tba when oxlint is added to nvim-lspconfig)
+- [X] Oxlint support
 - [X] Comment keybind remap
 - [X] Improve debug experience
+- [ ] Use eslint and oxlint in conform - asynchronously
 
