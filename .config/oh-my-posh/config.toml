@@ -1,0 +1,65 @@
+version = 2
+final_space = true
+console_title_template = "{{.Folder}}{{if .Root}} :: root{{end}}"
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    foreground = 'cyan'
+    template = '{{if .Segments.Git.Ref}}{{ .Segments.Git.RepoName }}{{ .Path | replace .Segments.Git.Dir ""}}{{else}}{{ .Path }}{{end}}'
+    [blocks.segments.properties]
+      style = 'full'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    foreground = '#f5c2e7'
+    template = " <#ffffff>on</> \ue0a0 <b>{{if .Detached}}HEAD <green>({{.Commit.Sha | substr 0 7}})</></>{{else}}{{ .HEAD }}{{end}}</b> {{if or .Rebase .Merge}}<#ffffff>(<#f9e2af><b>{{if .Rebase}}REBASING{{end}}{{if .Merge}}MERGING{{end}}</></>)</>{{end}}"
+    [blocks.segments.properties]
+      fetch_status = true
+      branch_icon = ''
+
+[[blocks]]
+  type = 'rprompt'
+  alignment = 'right'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    foreground = 'yellow'
+    template = '{{ .FormattedMs }}'
+    [blocks.segments.properties]
+      threshold = 5000
+      style = 'austin'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    foreground_templates = [
+      '{{if eq .Code 0}}lightGreen{{end}}',
+      '{{if ne .Code 0}}red{{end}}',
+    ]
+    style = 'plain'
+    template = "\u279c"
+    type = 'text'
+
+[transient_prompt]
+  foreground_templates = [
+    '{{if eq .Code 0}}lightGreen{{end}}',
+    '{{if ne .Code 0}}red{{end}}',
+  ]
+  template = "\u279c "
+
+[secondary_prompt]
+  foreground = 'yellow'
+  template = "\u276f "
+
