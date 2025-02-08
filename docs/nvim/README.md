@@ -16,6 +16,12 @@ The `<leader>` key for my configuration is `s p a c e`
 - `<leader>a` - Code action menu
 ### Nvim tree
 - `<C-n>` - Open neovim tree
+### Debug
+- `<leader>db` - Add a breakpoint
+- `<leader>dc` - Run/Continue debugging
+- `<leader>dt` - Terminate debug process
+- `<leader>du` - DAP UI: toggle
+- `<leader>de` - DAP UI: evaluate
 ### Neovim
 - `<leader>y` - Copy to system clipboard
 - `<leader>p` - Paste from system clipboard

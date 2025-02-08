@@ -3,7 +3,7 @@ return {
     'neovim/nvim-lspconfig',
     lazy = false,
     config = function()
-      require('config.lspconfig')
+      require('config.lspconfig').setup()
     end,
     keys = {
       { '<leader>r', vim.lsp.buf.rename, desc = 'lsp rename variable' },

@@ -1,4 +1,4 @@
-local opts = {
+local mason_opts = {
   ensure_installed = {},
 }
 
@@ -15,12 +15,16 @@ local ensure_installed = {
   'typescript-language-server',
   'vue-language-server',
   'unocss-language-server',
+  -- TODO: setup
+  'firefox-debug-adapter',
+  'js-debug-adapter',
 }
 
 if os.getenv('NVIM_MASON_NIX') ~= 'true' then
-  opts.ensure_installed = { unpack(ensure_installed), unpack(non_nix_installed) }
+  ---@diagnostic disable-next-line: deprecated
+  mason_opts.ensure_installed = { unpack(ensure_installed), unpack(non_nix_installed) }
 else
-  opts.ensure_installed = ensure_installed
+  mason_opts.ensure_installed = ensure_installed
 end
 
 local install_ensure_installed = function(packages)
@@ -57,7 +61,7 @@ return {
   {
     'williamboman/mason.nvim',
     opts = function()
-      return opts
+      return mason_opts
     end,
     config = function(_, opts)
       require('mason').setup(opts)
