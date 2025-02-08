@@ -1,8 +1,9 @@
 local mason_registry = require('mason-registry')
 local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path()
-  .. '/node_modules/@vue/language-server'
+    .. '/node_modules/@vue/language-server'
 
 local lspconfig = require('lspconfig')
+local util = require('lspconfig/util')
 
 lspconfig.ts_ls.setup({
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
@@ -46,4 +47,5 @@ lspconfig.lua_ls.setup({
 })
 lspconfig.rust_analyzer.setup({
   filetypes = { 'rust' },
+  rootdir = util.root_pattern("Cargo.toml"),
 })
