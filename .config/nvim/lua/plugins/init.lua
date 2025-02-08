@@ -52,7 +52,7 @@ return {
           },
         },
         sources = {
-          { name = 'nvim_lsp' },
+          { name = 'nvim_lsp', trigger_characters = { '-' } },
           { name = 'buffer' },
           { name = 'nvim_lua' },
           { name = 'path' },
@@ -126,6 +126,7 @@ return {
     },
     keys = {
       { '<leader><leader>', '<cmd>Telescope find_files<cr>', desc = 'Fuzzy find files' },
+      { '<leader>/', '<cmd>Telescope live_grep<cr>', desc = 'Fuzzy find files' },
     },
     config = function()
       require('config.telescope')

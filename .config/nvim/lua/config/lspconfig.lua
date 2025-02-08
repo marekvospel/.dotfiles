@@ -20,7 +20,6 @@ lspconfig.ts_ls.setup({
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   },
 })
-
 lspconfig.volar.setup({
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 
@@ -29,6 +28,12 @@ lspconfig.volar.setup({
       hybridMode = false,
     },
   },
+})
+lspconfig.unocss.setup({
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'vue-html', 'html', 'css' },
+  root_dir = function(fname)
+    return utils.root_pattern('unocss.config.js', 'unocss.config.ts')(fname)
+  end,
 })
 
 lspconfig.clangd.setup({
