@@ -15,17 +15,30 @@ return {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope.nvim' },
     },
+    -- stylua: ignore
     keys = {
-      {
-        '<leader>a',
-        function()
-          require('tiny-code-action').code_action()
-        end,
-        desc = 'lsp code action',
-      },
+      { '<leader>a', function () require('tiny-code-action').code_action() end, desc = 'lsp code action' },
     },
     config = function()
       require('tiny-code-action').setup()
     end,
+  },
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      toggler = {
+        line = '<leader>cc',
+        block = '<leader>bc',
+      },
+      opleader = {
+        line = '<leader>c',
+        block = '<leader>b',
+      },
+      extra = {
+        above = '<leader>cO',
+        below = '<leader>co',
+        eol = '<leader>cA',
+      },
+    },
   },
 }
