@@ -12,4 +12,10 @@ vim.opt.softtabstop = 2
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- System clipboard
+vim.keymap.set('n', '<leader>y', '"+y', { noremap = true, silent = true })
+vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>p', '"+p', { noremap = true, silent = true })
+vim.keymap.set('v', '<leader>p', '"+p', { noremap = true, silent = true })
+
 require('config.lazy')

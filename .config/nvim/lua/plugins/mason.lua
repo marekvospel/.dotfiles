@@ -1,16 +1,8 @@
-local M = {
-  opts = {}
+local opts = {
+  ensure_installed = {},
 }
 
-M.opts = {
-  ensure_installed = {
-    'lua-language-server',
-    'stylua',
-    'typescript-language-server',
-    'vue-language-server',
-  },
-}
-
+-- Packages that are installed on non-nix devices
 local non_nix_installed = {
   'clangd',
   'clang-format',
@@ -19,19 +11,19 @@ local non_nix_installed = {
 }
 
 local ensure_installed = {
-  -- Nix has to be installed manually :(
+  'eslint_d',
   'typescript-language-server',
   'vue-language-server',
   'unocss-language-server',
 }
 
-if os.getenv("NVIM_MASON_NIX") ~= "true" then
-  M.opts.ensure_installed = { unpack(ensure_installed), unpack(non_nix_installed) }
+if os.getenv('NVIM_MASON_NIX') ~= 'true' then
+  opts.ensure_installed = { unpack(ensure_installed), unpack(non_nix_installed) }
 else
-  M.opts.ensure_installed = ensure_installed
+  opts.ensure_installed = ensure_installed
 end
 
-M.ensure_installed = function(packages)
+local install_ensure_installed = function(packages)
   if packages == nil then
     return
   end
@@ -61,4 +53,16 @@ M.ensure_installed = function(packages)
   end)
 end
 
-return M
+return {
+  {
+    'williamboman/mason.nvim',
+    opts = function()
+      return opts
+    end,
+    config = function(_, opts)
+      require('mason').setup(opts)
+
+      install_ensure_installed(opts.ensure_installed)
+    end,
+  },
+}
