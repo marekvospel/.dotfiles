@@ -13,6 +13,7 @@ local non_nix_installed = {
   'stylua',
   'lua-language-server',
   'biome',
+  'taplo',
 }
 
 local ensure_installed = {
@@ -23,6 +24,8 @@ local ensure_installed = {
   'js-debug-adapter',
   'prettier',
   'eslint-lsp',
+  'json-lsp',
+  'yaml-language-server',
 }
 
 if os.getenv('NVIM_MASON_NIX') ~= 'true' then

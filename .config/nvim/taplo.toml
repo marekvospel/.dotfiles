@@ -1,0 +1,16 @@
+
+[[rule]]
+include = ["**/Cargo.toml"]
+schema.path = "https://json.schemastore.org/cargo.json"
+
+[[rule]]
+include = ["rust-toolchain.toml", ".rust-toolchain.toml"]
+schema.path = "https://json.schemastore.org/rust-toolchain.json"
+
+[[rule]]
+include = ["rustfmt.toml", ".rustfmt.toml"]
+schema.path = "https://json.schemastore.org/rustfmt.json"
+
+[[rule]]
+include = ["makefile.toml"]
+schema.path = "https://json.schemastore.org/cargo-make.json"

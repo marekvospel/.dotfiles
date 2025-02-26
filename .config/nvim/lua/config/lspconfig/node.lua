@@ -176,6 +176,15 @@ M.setup = function(on_attach, capabilities)
       if not buf_root_pattern(bufid, '.oxlintrc.json') then
         client.stop()
       end
+
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        callback = function(args)
+          if args.buf == bufid and not vim.g.disable_autoformat and not vim.b[bufid].disable_autoformat then
+            vim.cmd('OxcFixAll')
+          end
+        end,
+      })
+
       on_attach(client, bufid)
     end,
     capabilities = capabilities,

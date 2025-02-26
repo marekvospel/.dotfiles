@@ -20,6 +20,9 @@ M.setup = function()
   require('config.lspconfig.c').setup(M.on_attach, M.capabilities)
   require('config.lspconfig.node').setup(M.on_attach, M.capabilities)
   require('config.lspconfig.lua').setup(M.on_attach, M.capabilities)
+  require('config.lspconfig.json').setup(M.on_attach, M.capabilities)
+  require('config.lspconfig.yaml').setup(M.on_attach, M.capabilities)
+  require('config.lspconfig.toml').setup(M.on_attach, M.capabilities)
 end
 
 return M

@@ -18,7 +18,7 @@ local js_formatter = function(bufid)
     table.insert(formatters, 'prettier')
   end
 
-  -- Maybe eslint eventually?
+  -- exlint eventually?
 
   if buf_root_pattern(bufid, 'biome.json', 'biome.jsonc') then
     table.insert(formatters, 'biome')
@@ -33,20 +33,27 @@ return {
   {
     'stevearc/conform.nvim',
     opts = function()
+      local formatters = {
+        [{ 'lua' }] = { 'stylua' },
+        [{ 'rust' }] = { 'rustfmt' },
+        [{ 'c' }] = { 'clang-format' },
+        [{ 'cpp' }] = { 'clang-format' },
+        [{ 'nix' }] = { 'nixfmt' },
+        [{ 'toml' }] = { 'taplo' },
+        [{ 'yaml', 'json', 'jsonc' }] = { lsp_format = 'prefer' },
+        [{ 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'svelte' }] = js_formatter,
+      }
+
+      local mapped_formatters = {}
+
+      for langs, format in pairs(formatters) do
+        for _, lang in ipairs(langs) do
+          mapped_formatters[lang] = format
+        end
+      end
+
       return {
-        formatters_by_ft = {
-          lua = { 'stylua' },
-          rust = { 'rustfmt' },
-          c = { 'clang-format' },
-          cpp = { 'clang-format' },
-          nix = { 'nixfmt' },
-          javascript = js_formatter,
-          typescript = js_formatter,
-          javascriptreact = js_formatter,
-          typescriptreact = js_formatter,
-          vue = js_formatter,
-          svelte = js_formatter,
-        },
+        formatters_by_ft = mapped_formatters,
         format_on_save = function(bufid)
           if vim.g.disable_autoformat or vim.b[bufid].disable_autoformat then
             return
@@ -56,6 +63,7 @@ return {
             timeout_ms = 1000,
           }
         end,
+        lsp_format = { 'never' },
       }
     end,
     config = function(_, opts)

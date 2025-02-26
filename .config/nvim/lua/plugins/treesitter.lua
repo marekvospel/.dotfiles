@@ -18,6 +18,8 @@ return {
         'vue',
         'svelte',
         'jsdoc',
+        'json',
+        'yaml',
       },
       highlight = { enable = true },
       indent = { enable = true },
