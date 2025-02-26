@@ -1,0 +1,17 @@
+.git/
+
+# node
+node_modules/
+
+# node targets
+{build,dist}/
+.vite-inspect/
+
+# rust
+target/
+
+# coverage/tests
+{reports,coverage}/
+
+# KlubFITpp
+_site/

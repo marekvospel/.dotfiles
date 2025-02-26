@@ -15,9 +15,10 @@ return {
       ---@diagnostic disable-next-line: deprecated
       local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
 
-      table.insert(vimgrep_arguments, '--hidden')
-      table.insert(vimgrep_arguments, '--glob')
-      table.insert(vimgrep_arguments, '!**/.git/*')
+      local ignoreFile = '--ignore-file=' .. vim.fn.expand('~/.config/nvim/.rgignore')
+
+      table.insert(vimgrep_arguments, '-uu')
+      table.insert(vimgrep_arguments, ignoreFile)
 
       telescope.setup({
         defaults = {
@@ -25,7 +26,12 @@ return {
         },
         pickers = {
           find_files = {
-            find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+            find_command = {
+              'rg',
+              '--files',
+              '-uu',
+              ignoreFile,
+            },
           },
         },
       })
