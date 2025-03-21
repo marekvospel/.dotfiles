@@ -1,6 +1,9 @@
 return {
   {
     'neovim/nvim-lspconfig',
+    dependencies = {
+      'mrcjkb/rustaceanvim',
+    },
     lazy = false,
     config = function()
       require('config.lspconfig').setup()

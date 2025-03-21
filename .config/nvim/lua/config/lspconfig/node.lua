@@ -138,13 +138,23 @@ M.setup = function(on_attach, capabilities)
     filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte' },
     on_attach = function(client, bufid)
       -- Not optimal, as it has some delay, but it works I guess
-      if not buf_root_pattern(bufid, '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.mjs', '.eslintrc.json') then
+      if
+        not buf_root_pattern(
+          bufid,
+          '.eslintrc.js',
+          '.eslintrc.cjs',
+          '.eslintrc.mjs',
+          '.eslintrc.json',
+          'eslint.config.js',
+          'eslint.config.mjs'
+        )
+      then
         client.stop()
       else
         vim.api.nvim_create_autocmd('BufWritePre', {
           callback = function(args)
             if args.buf == bufid and not vim.g.disable_autoformat and not vim.b[bufid].disable_autoformat then
-              vim.cmd('EslintFixAll')
+              -- vim.cmd('EslintFixAll')
             end
           end,
         })
@@ -180,7 +190,7 @@ M.setup = function(on_attach, capabilities)
       vim.api.nvim_create_autocmd('BufWritePre', {
         callback = function(args)
           if args.buf == bufid and not vim.g.disable_autoformat and not vim.b[bufid].disable_autoformat then
-            vim.cmd('OxcFixAll')
+            -- vim.cmd('OxcFixAll')
           end
         end,
       })
