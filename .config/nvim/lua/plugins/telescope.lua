@@ -3,6 +3,7 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
     },
     keys = {
       { '<leader><leader>', '<cmd>Telescope find_files<cr>', desc = 'Fuzzy find files' },
@@ -21,6 +22,9 @@ return {
       table.insert(vimgrep_arguments, ignoreFile)
 
       telescope.setup({
+        extensions = {
+          ['ui-select'] = {},
+        },
         defaults = {
           vimgrep_arguments = vimgrep_arguments,
         },
@@ -35,6 +39,8 @@ return {
           },
         },
       })
+
+      require('telescope').load_extension('ui-select')
     end,
   },
 }

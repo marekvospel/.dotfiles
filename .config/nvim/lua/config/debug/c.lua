@@ -8,6 +8,14 @@ M.setup = function()
     command = 'gdb',
     args = { '-i', 'dap' },
   }
+  dap.adapters.lldb = {
+    type = 'executable',
+    command = 'codelldb',
+  }
+  dap.adapters.codelldb = {
+    type = 'executable',
+    command = 'codelldb',
+  }
 end
 
 return M

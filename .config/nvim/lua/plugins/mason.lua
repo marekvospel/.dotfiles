@@ -14,6 +14,7 @@ local non_nix_installed = {
   'lua-language-server',
   'biome',
   'taplo',
+  'codelldb',
 }
 
 local ensure_installed = {

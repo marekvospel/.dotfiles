@@ -38,11 +38,11 @@ The `<leader>` key for my configuration is `s p a c e`
 - `<leader>db` - Add a breakpoint
 - `<leader>dc` - Run/Continue debugging
 - `<leader>dt` - Terminate debug process
-- `<leader>ds` - Session?
+- `<leader>dS` - Session?
 - `<leader>dC` - Run to cursor
-- `<leader>di` - Step into
+- `<leader>ds` - Step into
+- `<leader>dn` - Step over
 - `<leader>do` - Step out
-- `<leader>dO` - Step over
 - `<leader>dj` - Stack down
 - `<leader>dk` - Stack up
 - `<leader>dw` - hover widgets
@@ -54,6 +54,14 @@ The `<leader>` key for my configuration is `s p a c e`
 
 - `<leader>gh` - Show Git hunk diff
 - `<leader>grr` - Reset Git hunk
+
+### Neotest
+
+- `<leader>tt` - Toggle test summary
+- `<leader>tr` - Run nearest test
+- `<leader>td` - Run nearest test with debugger attached
+- `<leader>to` - Show nearest test output
+- `<leader>tf` - Run test for current file
 
 ### Neovim
 
